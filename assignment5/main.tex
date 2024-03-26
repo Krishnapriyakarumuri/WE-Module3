@@ -1,0 +1,88 @@
+\documentclass[12pt]{article} % Increased font size to 12pt
+\usepackage[margin=1in]{geometry} % Adjust page margins
+\usepackage{graphicx} % Required for inserting images
+
+
+
+\begin{document}
+
+\section*{\textbf{Introduction}}
+
+The Diamonds game involves players receiving a suit (excluding diamonds) and bidding on revealed diamond cards with their own cards face down. The highest bid (most points based on a pre-defined ranking - 2 $<$ 3 $<$ 4 $<$ ... A) wins the diamond, with points awarded to the winner(s). Ties in bids lead to shared rewards, making cooperation and reading opponents' intentions valuable.
+
+Each player gets a suit of cards other than the diamond suit. The diamond cards are then shuffled and put on auction one by one. All the players must bid with one of their own cards face down. The banker gives the diamond card to the highest bid, i.e. the bid with the most points. 2$<$3$<$4$<$5$<$6$<$7$<$8$<$9$<$T$<$J$<$Q$<$K$<$A. The winning player gets the points of the diamond card to their column in the table. If there are multiple players that have the highest bid with the same card, the points from the diamond card are divided equally among them. The player with the most points wins at the end of the game.
+
+\section*{\textbf{Problem Statement}}
+
+Develop a GenAI model that can learn and implement effective bidding strategies for the Diamonds card game. The AI should consider factors like card value, opponent behavior, and the value of the diamond being auctioned. The model should be evaluated based on its ability to win games and adapt to different game situations.
+
+\section*{\textbf{Teaching GenAI the Game}}
+
+After explaining the problem statement analysis made by GenAI $\rightarrow$ \textbf{Analysis of the Card Game Rules}. The game seems like a trick-taking auction game with some interesting mechanics. Here's a breakdown of the key points:
+\begin{itemize}
+    \item \textbf{Cards:}
+         Each player gets a suit (excluding diamonds).
+        Diamonds are used for auction.
+
+    \item \textbf{Auction:}
+     Diamonds are revealed one at a time.
+         Players bid with one face-down card from their suit.
+         Highest bid (most points) wins the diamond.
+       Ties for highest bid share the diamond's points equally.
+
+    \item \textbf{Points:}
+         Card points follow standard order (2 $<$ 3 $<$ 4 ... A).
+       Winning player(s) add the diamond's point value to their score.
+    \item \textbf{Winning:}
+        Player with the most points at the end wins the game.
+\end{itemize}
+
+\section*{\textbf{Iterating upon Strategy}}
+
+The implemented AI bidding strategy focuses on two key aspects:
+\begin{itemize}
+    \item \textbf{Card Value vs. Diamond Value:}
+        The AI prioritizes bidding cards with a value close to, but not significantly higher than, the value of the diamond being auctioned.
+         This helps secure valuable diamonds without wasting high-value cards on low diamonds.
+ 
+    \item \textbf{Preserving Strong Cards:}
+        \item The AI assigns a bonus score to high-value cards in the player's hand (top half).
+        \item This encourages the AI to keep these cards for potentially valuable diamonds later in the game.
+  
+\end{itemize}
+
+\section*{\textbf{Analysis and Conclusion}}
+
+\textbf{Goal:} Develop an intelligent bidding strategy for the AI player in the Diamonds card game.
+
+\textbf{Challenges:}
+    Balancing card value with diamond value to avoid overbidding.
+  Preserving high-value cards for potentially valuable diamonds later.
+
+
+\textbf{Strategy:}
+    \item \textbf{Card Evaluation:} Assign a score to each card based on:
+        Card Value: Higher value is better.
+         Preserving High Cards: Bonus for keeping high-value cards in the hand.
+    \item \textbf{Dynamic Overbidding:} Consider context when evaluating overbidding:
+    Low Player Count: More likely to win with a calculated overbid.
+       Diamond Value Fluctuation: Lower threshold for low-value diamonds.
+
+     \textbf{Risk Assessment:} Evaluate risk based on remaining players.
+\textbf{Dynamic Threshold:} Adjust minimum bid score based on diamond value and player count.
+
+\textbf{Benefits:}
+\begin{itemize}
+    \item Win valuable diamonds without wasting high-value cards on low diamonds.
+    \item Potential for successful bluffs through calculated overbidding.
+\end{itemize}
+
+\textbf{Further Refinement:}
+\begin{itemize}
+    \item Experiment with different weighting factors and thresholds.
+    \item Consider incorporating past bidding history for a more dynamic strategy.
+\end{itemize}
+
+This strategy aims to be both efficient and adaptable, allowing the AI to make informed decisions based on card value, diamond value, and game context.
+
+\end{document}
